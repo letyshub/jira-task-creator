@@ -30,5 +30,10 @@ public class JiraTaskCreator : IJiraTaskCreator
 
         var requestContent = new StringContent(JsonSerializer.Serialize(rq), Encoding.UTF8, "application/json");
         var rs = await _httpClient.PostAsync(_configuration.Url, requestContent, ct);
+
+        if (!rs.IsSuccessStatusCode)
+        {
+            throw new Exception(rs.ReasonPhrase);
+        }
     }
 }

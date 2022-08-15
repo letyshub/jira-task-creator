@@ -1,16 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using WireMock.Server;
 using Xunit;
 
 public class WebpageRetrieverTest
 {
-    private WireMockServer _server;
-
-    public WebpageRetrieverTest()
-    {
-        _server = WireMockServer.Start();
-    }
 
     [Fact]
     public async Task Should_Retrieve_Webpage_Title()

@@ -1,14 +1,23 @@
 public class JiraTaskCreatorApplication
 {
     private readonly IJiraTaskCreator _jiraTaskCreator;
+    private readonly ApplicationSettings _settings;
 
-    public JiraTaskCreatorApplication(IJiraTaskCreator jiraTaskCreator)
+    public JiraTaskCreatorApplication(IJiraTaskCreator jiraTaskCreator, ApplicationSettings settings)
     {
         _jiraTaskCreator = jiraTaskCreator;
+        _settings = settings;
     }
 
-    public Task<string> RunAsync(CancellationToken ct)
+    public async Task RunAsync(CancellationToken ct)
     {
-        return Task.FromResult<string>("run");
+        var lines = await System.IO.File.ReadAllLinesAsync(_settings.LinksFilePath, ct);
+
+        foreach (var line in lines)
+        {
+            await _jiraTaskCreator.CreateTaskAsync(line, ct);
+        }
+
+        await System.IO.File.WriteAllLinesAsync(_settings.LinksFilePath, new List<string>(0), ct);
     }
 }

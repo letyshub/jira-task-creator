@@ -18,6 +18,12 @@ var builder = new HostBuilder()
                        c.DefaultRequestHeaders.Authorization =
                            new AuthenticationHeaderValue("Basic", HttpUtiltyService.CreateBasicAuthValue(settings.Jira.User, settings.Jira.Token));
                    });
+                   services.AddScoped<IJiraTaskCreator, JiraTaskCreator>();
+                   services.AddScoped<IHttpHandler, HttpHandler>();
+                   services.AddScoped<IWebpageRetriever, WebpageRetriever>();
+                   services.AddSingleton<ApplicationSettings>(settings);
+                   services.AddSingleton<JiraConfiguration>(settings.Jira);
+                   services.AddSingleton<JiraTaskCreatorApplication>();
                }).UseConsoleLifetime();
 
 var host = builder.Build();
@@ -30,9 +36,7 @@ using (var serviceScope = host.Services.CreateScope())
     {
         var cts = new CancellationTokenSource(settings.Timeout * 1000 * 60);
         var myService = services.GetRequiredService<JiraTaskCreatorApplication>();
-        var result = await myService.RunAsync(cts.Token);
-
-        Console.WriteLine(result);
+        await myService.RunAsync(cts.Token);
     }
     catch (Exception ex)
     {
