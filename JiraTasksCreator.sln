@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E803BF0-5A20-40EB-940A-AD589790E88F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraTasksCreator", "src\JiraTasksCreator\JiraTasksCreator.csproj", "{06BFB513-544C-42A4-BDED-F596D81DBB92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D70C14AD-2816-4ECB-974A-091A8909DED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraTasksCreatorTests", "tests\JiraTasksCreatorTests\JiraTasksCreatorTests.csproj", "{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06BFB513-544C-42A4-BDED-F596D81DBB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BFB513-544C-42A4-BDED-F596D81DBB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BFB513-544C-42A4-BDED-F596D81DBB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BFB513-544C-42A4-BDED-F596D81DBB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06BFB513-544C-42A4-BDED-F596D81DBB92} = {8E803BF0-5A20-40EB-940A-AD589790E88F}
+		{E7B65B30-95CE-4B85-95C1-63BE9F5CB2D7} = {D70C14AD-2816-4ECB-974A-091A8909DED0}
+	EndGlobalSection
+EndGlobal
