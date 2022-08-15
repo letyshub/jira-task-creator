@@ -2,21 +2,21 @@ using System.Xml;
 
 public class WebpageRetriever : IWebpageRetriever, IDisposable
 {
-    private readonly IHttpHandler _httpHandler;
+    private readonly HttpClient _httpClient;
 
-    public WebpageRetriever(IHttpHandler httpHandler)
+    public WebpageRetriever(IHttpClientFactory httpClientFactory)
     {
-        _httpHandler = httpHandler;
+        _httpClient = httpClientFactory.CreateClient();
     }
 
     public void Dispose()
     {
-        _httpHandler.Dispose();
+        _httpClient.Dispose();
     }
 
     public async Task<string> GetTitleAsync(string url, CancellationToken ct)
     {
-        var rs = await _httpHandler.GetAsync(url, ct);
+        var rs = await _httpClient.GetAsync(url, ct);
 
         if (!rs.IsSuccessStatusCode)
         {

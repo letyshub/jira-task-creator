@@ -26,8 +26,8 @@ try
                            c.DefaultRequestHeaders.Authorization =
                                new AuthenticationHeaderValue("Basic", HttpUtiltyService.CreateBasicAuthValue(settings.Jira.User, settings.Jira.Token));
                        });
-                       services.AddScoped<IJiraTaskCreator, JiraTaskCreator>();
-                       services.AddScoped<IHttpHandler, HttpHandler>();
+                       services.AddHttpClient();
+                       services.AddScoped<IJiraTaskService, JiraTaskService>();
                        services.AddScoped<IWebpageRetriever, WebpageRetriever>();
                        services.AddSingleton<ApplicationSettings>(settings);
                        services.AddSingleton<JiraConfiguration>(settings.Jira);

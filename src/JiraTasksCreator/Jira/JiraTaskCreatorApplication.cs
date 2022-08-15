@@ -2,11 +2,11 @@ using Microsoft.Extensions.Logging;
 
 public class JiraTaskCreatorApplication
 {
-    private readonly IJiraTaskCreator _jiraTaskCreator;
+    private readonly IJiraTaskService _jiraTaskCreator;
     private readonly ApplicationSettings _settings;
     private readonly ILogger<JiraTaskCreatorApplication> _logger;
 
-    public JiraTaskCreatorApplication(IJiraTaskCreator jiraTaskCreator, ApplicationSettings settings, ILogger<JiraTaskCreatorApplication> logger)
+    public JiraTaskCreatorApplication(IJiraTaskService jiraTaskCreator, ApplicationSettings settings, ILogger<JiraTaskCreatorApplication> logger)
     {
         _jiraTaskCreator = jiraTaskCreator;
         _settings = settings;

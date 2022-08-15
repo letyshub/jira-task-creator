@@ -4,6 +4,19 @@ public class JiraCreateTaskRequest
 {
     [JsonPropertyName("fields")]
     public JiraFields? Fields { get; set; }
+
+    public JiraCreateTaskRequest(string description, string summary, string project, string? parentId)
+    {
+        this.Fields = new JiraFields
+        {
+            Description = description,
+            Summary = summary,
+            Project = new JiraProject { Key = project },
+            Parent = string.IsNullOrEmpty(parentId)
+                ? null
+                : new JiraParent { Id = parentId }
+        };
+    }
 }
 
 public class JiraFields
