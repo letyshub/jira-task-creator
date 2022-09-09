@@ -1,5 +1,7 @@
 # Jira Task Creator
 
+[![.NET](https://github.com/letyshub/jira-task-creator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/letyshub/jira-task-creator/actions/workflows/dotnet.yml)
+
 Jira Task Creator read links from the given file and creates Jira's task. I use it to create Read Later's task. So, when I find important article I create Jira's task to read it later. Jira Task Creator deletes all links from file when it finishes work.
 
 ## Settings
