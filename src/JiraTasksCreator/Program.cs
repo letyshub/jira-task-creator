@@ -26,9 +26,14 @@ try
                            c.DefaultRequestHeaders.Authorization =
                                new AuthenticationHeaderValue("Basic", HttpUtiltyService.CreateBasicAuthValue(settings.Jira.User, settings.Jira.Token));
                        });
-                       services.AddHttpClient();
+                       services.AddHttpClient("Default", c =>
+                       {
+                           c.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "text/html; charset=utf-8");
+                           c.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
+                       });
                        services.AddScoped<IJiraTaskService, JiraTaskService>();
                        services.AddScoped<IWebpageRetriever, WebpageRetriever>();
+                       services.AddScoped<ITextParserService, TextParserService>();
                        services.AddSingleton<ApplicationSettings>(settings);
                        services.AddSingleton<JiraConfiguration>(settings.Jira);
                        services.AddSingleton<JiraTaskCreatorApplication>();

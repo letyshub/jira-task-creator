@@ -1,12 +1,12 @@
-using System.Xml;
-
 public class WebpageRetriever : IWebpageRetriever, IDisposable
 {
     private readonly HttpClient _httpClient;
+    private readonly ITextParserService _parser;
 
-    public WebpageRetriever(IHttpClientFactory httpClientFactory)
+    public WebpageRetriever(IHttpClientFactory httpClientFactory, ITextParserService parser)
     {
-        _httpClient = httpClientFactory.CreateClient();
+        _httpClient = httpClientFactory.CreateClient("Default");
+        _parser = parser;
     }
 
     public void Dispose()
@@ -24,14 +24,6 @@ public class WebpageRetriever : IWebpageRetriever, IDisposable
         }
 
         var body = await rs.Content.ReadAsStringAsync(ct);
-        var titleStartTag = body.IndexOf("<title>", StringComparison.OrdinalIgnoreCase);
-        var titleEndTag = body.IndexOf("</title>", StringComparison.OrdinalIgnoreCase);
-
-        if (titleStartTag == -1 || titleEndTag == -1)
-        {
-            throw new Exception("Missing webpage's title");
-        }
-
-        return body.Substring(titleStartTag + 7, titleEndTag - titleStartTag - 7);
+        return _parser.GetHtmlTitle(body);
     }
 }
