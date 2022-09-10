@@ -9,7 +9,7 @@ jobs:
     name: Release
     strategy:
       matrix:
-        kind: ['linux', 'windows', 'macOS']
+        kind: ['linux', 'win-x64', 'macOS']
         include:
           - kind: linux
             os: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
           tag=$(git describe --tags --abbrev=0)
           release_name="JiraTasksCreator-$tag-${{ matrix.target }}"
           # Build everything
-          dotnet publish src/JiraTasksCreator/JiraTasksCreator.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" --self-contained true /p:PublishSingleFile=true
+          dotnet publish src/JiraTasksCreator/JiraTasksCreator.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" /p:PublishSingleFile=true -p:PublishTrimmed=True -p:TrimMode=CopyUsed  --self-contained true
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
             # Pack to zip for Windows
