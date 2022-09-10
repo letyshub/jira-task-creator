@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: |
           tag=$(git describe --tags --abbrev=0)
-          release_name="JiraTasksCreator-$tag-${{ matrix.target }}"
+          release_name="jira-tasks-creator-$tag-${{ matrix.target }}"
           # Build everything
           dotnet publish src/JiraTasksCreator/JiraTasksCreator.csproj --runtime "${{ matrix.target }}" -c Release -o "$release_name" -p:PublishSingleFile=true --self-contained false
           # Pack files
@@ -49,6 +49,6 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
-          files: "JiraTasksCreator*"
+          files: "jira-tasks-creator*"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
